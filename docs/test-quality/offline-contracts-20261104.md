@@ -17,7 +17,7 @@ Selected pre-campaign and campaign firstparty tests, required support/fixtures/d
 ## Independent checkout execution
 
 ```sh
-/home/josh/code-asset-test-improvement-20261029/venvs/de-ds-common-original-s3/bin/python tests/file50_python/pipeline/run_quality.py --coverage --output <evidence-directory>
+PIPELINE_EXTRA_PYTHONPATH='/home/josh/scratch/code-asset-parallel-20261101/docx-target20-20261103/file20-python-execution/common/repo:/home/josh/scratch/code-asset-parallel-20261101/docx-target20-20261103/file20-python-execution/continuation/orchestration/deps' /home/josh/code-asset-test-improvement-20261029/venvs/de-ds-common-original-s3/bin/python tests/file50_python/pipeline/run_quality.py --coverage --output <evidence-directory>
 ```
 
 Exit `0`; cases `1`, passed `1`, failed `0`, errors `0`, skipped `0`. The interpreter/dependency paths exactly reuse the packet's prepared read-only runtime; no global installation. Full command, JUnit, coverage and runtime output remain in the private publication receipt's evidence directory. All actual quality manifest test/source paths exist. No broad root or guessed JSON manifest was substituted.
