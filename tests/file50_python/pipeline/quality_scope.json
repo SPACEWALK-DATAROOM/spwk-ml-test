@@ -1,0 +1,12 @@
+{
+  "tests": [
+    "tests/test_polygon_fill_env.py::PolygonFillEnvironmentTests::test_coordinate_conversion_rejects_out_of_bounds_or_mismatched_points"
+  ],
+  "source_roots": [
+    "."
+  ],
+  "import_paths": [
+    "tests"
+  ],
+  "plugins": []
+}
