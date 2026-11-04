@@ -4,32 +4,14 @@ This is isolated source behavior, not application startup or framework integrati
 Only Prefect's task decorator is removed. Original annotation policy is retained.
 """
 import ast
+import importlib
 import __future__
-import datetime
 import hashlib
-import io
-import itertools
-import json
-import logging
-import os
-import random
-import re
-import sys
-import time
-import types
-import typing
 from pathlib import Path
-from functools import partial
-from dateutil.relativedelta import relativedelta
-from types import SimpleNamespace, MethodType
-import pandas as pd
 import numpy as np
 ROOT = Path(__file__).resolve().parents[3]
 
-def offline(event, args):
-    if event in ("socket.connect", "socket.getaddrinfo"):
-        raise RuntimeError("External network is unavailable in isolated source contracts")
-sys.addaudithook(offline)
+importlib.import_module('quality_guard')
 
 def load(path, names, owner=None, **bindings):
     source = (ROOT / path).resolve()
@@ -70,15 +52,7 @@ def load(path, names, owner=None, **bindings):
         if isinstance(node, ast.ImportFrom) and node.module == "__future__":
             for feature in node.names:
                 flags |= getattr(__future__, feature.name).compiler_flag
-    ns = {"pd": pd, "DataFrame": pd.DataFrame, "np": np, "logging": logging,
-          "datetime": datetime, "dt": datetime, "types": types, "io": io, "json": json,
-          "os": os, "re": re, "time": time, "random": random, "itertools": itertools,
-          "Path": Path, "partial": partial, "relativedelta": relativedelta,
-          "typing": typing, "ty": typing,
-          "Any": typing.Any, "Callable": typing.Callable, "Dict": typing.Dict,
-          "List": typing.List, "Tuple": typing.Tuple, "Optional": typing.Optional,
-          "Union": typing.Union, "Set": typing.Set, "Iterable": typing.Iterable,
-          "__file__": str(source), "__name__": "isolated_source_contract", **bindings}
+    ns = {"np": np, "__file__": str(source), "__name__": "isolated_source_contract", **bindings}
     exec(compile(ast.Module(body=nodes, type_ignores=[]), str(source), "exec", flags=flags, dont_inherit=True), ns)
     ns["__source_provenance__"] = {"path": path, "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                                     "owner": owner, "definitions": provenance,

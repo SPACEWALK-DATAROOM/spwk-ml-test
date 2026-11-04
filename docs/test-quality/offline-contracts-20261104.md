@@ -37,3 +37,10 @@ No scripts/offline/run.py exists in this outgoing checkout.
 Actual default workflow files were inspected before publication. Current HEAD Codex pr-review success and completed nonfailing CI are required before merge.
 
 The detailed receipt records clone, selected pin/base HEAD, applied patch SHA256, source SHA preservation, exact publication exclusions, execution logs, reviews/fixes/CI, PR URL and merge SHA. Review status and actual MERGED state will be checked independently before a completed claim.
+
+
+## Final actual-caller loader correction
+
+The reviewer identified unused generic namespace dependencies. Every actual loader caller and selected original definition was read. The final loader retains only NumPy as its used dependency; geometry is explicitly passed by the polygon contract. Unused datetime/io/itertools/logging/os/random/re/time/types/typing/partial defaults and imports were removed. Source provenance, original AST/declaration/future policy, original expectations, and the exactly-one shared policy remain unchanged.
+
+The exact immutable manifest was rerun after this change: 1 cases, all pass, exit0; case identities and results match preserved freshness-quality evidence. The documented standalone source-contract entrypoint also passes without OFFLINE_OUTPUT or a helper PYTHONPATH.  No training, model/weight execution, GPU, backprop, live API/DB/S3 or credentials were used. Retained earlier broader tests are not represented as freshly passing. Root handoff logs/commands and before-loader bytes are preserved in the private receipt. No criterion was loosened.

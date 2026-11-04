@@ -1,5 +1,3 @@
-"""Network remains closed in Python child processes (including Sphinx)."""
-import sys
-def offline(event,args):
-    if event in ('socket.connect','socket.getaddrinfo'):raise RuntimeError('Network is closed in local quality execution')
-sys.addaudithook(offline)
+"""Load the one owned policy before child-process imports."""
+import importlib
+importlib.import_module('quality_guard')

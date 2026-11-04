@@ -1,3 +1,9 @@
+
+import sys as _contract_sys
+from pathlib import Path as _contract_Path
+
+_contract_sys.path.insert(0, str(_contract_Path(__file__).resolve().parents[1] / 'tests/file50_python/pipeline'))
+
 import unittest
 
 from shapely import geometry

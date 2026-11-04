@@ -3,8 +3,10 @@ import json,sys
 from pathlib import Path
 from unittest.mock import patch
 
-def offline(event,args):
-    if event in ('socket.connect','socket.getaddrinfo'):raise AssertionError('External network is unavailable in reviewed contracts')
+def offline(event, args):
+    if event in ('socket.connect', 'socket.getaddrinfo'):
+        raise RuntimeError('Network is closed in local quality execution')
+
 sys.addaudithook(offline)
 patches=[]
 def pytest_configure(config):
